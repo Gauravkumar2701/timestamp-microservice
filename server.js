@@ -4,7 +4,8 @@
 // init project
 var express = require('express');
 var app = express();
-
+const dotnev = require('dotenv')
+dotnev.config()
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
@@ -42,7 +43,8 @@ app.get("/api/:date", (req, res) => {
         : res.json({ unix: date.valueOf(), utc: date.toUTCString() });
 });
 
+const port = process.env.PORT;
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-    console.log('Your app is listening on port ' + listener.address().port);
+var listener = app.listen(port, function () {
+    console.log('Your app is listening on port', port);
 });
